@@ -1,0 +1,81 @@
+<div class="alert alert-success alert-dismissible" role="alert" ng-show="successMessage">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  {{successMessage}}
+</div>
+<div class="form-group">
+  <a class="btn btn-success" ui-sref="novoEmprestimo">Novo emprestimo</a>
+</div>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>
+      Livro
+    </th>
+    <th>
+      Mutuario
+    </th>
+    <th>
+      Data Emprestimo
+    </th>
+    <th>
+      Data Devolucao
+    </th>
+    <th>
+      Data Prevista Devolucao
+    </th>
+    <th>
+      Emprestado
+    </th>
+    <th>
+      Acoes
+    </th>
+  </tr>
+  </thead>
+  <tr ng-if="emprestimo.emprestado" ng-repeat="emprestimo in emprestimos">  	
+    <td>{{emprestimo.livro.titulo}}</td>
+    <td>{{emprestimo.mutuario.nome}}</td>
+    <td>{{emprestimo.dataEmprestimo.toString()}}</td>
+    <td>{{emprestimo.dataDevolucao.toString()}}</td>
+    <td>{{emprestimo.dataPrevistaDevolucao.toString()}}</td>
+    <td><input Type="checkbox" class="form-control" id="dtEnt" ng-model="emprestimo.emprestado" disabled="true"></input></td>    
+    <td><a class="btn btn-primary" ui-sref="editarEmprestimo({ id: emprestimo.id })">Editar</a>
+  </tr>
+</table>
+<br/>
+<div><h3>Livros devolvidos:</h3></div>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>
+      Livro
+    </th>
+    <th>
+      Mutuario
+    </th>
+    <th>
+      Data Emprestimo
+    </th>
+    <th>
+      Data Devolucao
+    </th>
+    <th>
+      Data Prevista Devolucao
+    </th>
+    <th>
+      Emprestado
+    </th>
+    <th>
+      Acoes
+    </th>
+  </tr>
+  </thead>
+  <tr ng-if="!emprestimo.emprestado" ng-repeat="emprestimo in emprestimos">  	
+    <td>{{emprestimo.livro.titulo}}</td>
+    <td>{{emprestimo.mutuario.nome}}</td>
+    <td>{{emprestimo.dataEmprestimo.toString()}}</td>
+    <td>{{emprestimo.dataDevolucao.toString()}}</td>
+    <td>{{emprestimo.dataPrevistaDevolucao.toString()}}</td>
+    <td><input Type="checkbox" class="form-control" id="dtEnt" ng-model="emprestimo.emprestado" disabled="true"></input></td>
+    <td><a class="btn btn-primary" ui-sref="editarEmprestimo({ id: emprestimo.id })" disabled="true">Editar</a>
+  </tr>
+</table>
